@@ -1,0 +1,192 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}CincyPolitics · Data-first Cincinnati politics{% endblock %}</title>
+
+    <!-- Plausible Analytics -->
+    <script defer data-domain="cincypolitics.com" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Tailwind (CDN for prototype). Replace with compiled Tailwind in production. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica", "Arial", "Noto Sans", ""],
+              mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+            },
+            colors: {
+              cp: {
+                bg: "#0b2545",          // deep blue terminal-esque background
+                card: "#0f335f",        // slightly lighter for cards
+                accent: "#4fd1c5",      // teal accent for UI focus states
+                grid: "#0e1f39",        // backdrop tint for overlays
+              }
+            },
+            boxShadow: {
+              soft: "0 1px 2px rgba(0,0,0,.2), 0 8px 24px rgba(0,0,0,.25)",
+            }
+          }
+        }
+      };
+    </script>
+
+    <!-- Basic reset for smoother font rendering -->
+    <style>html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}</style>
+  </head>
+  <body class="min-h-screen font-sans bg-cp-bg text-white">
+    <!-- Background map overlay (swap src when you have a public-domain wards map). -->
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0">
+      <div class="absolute inset-0 bg-cp-bg">
+        <!-- Optional subtle gradient to add depth -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cp-grid/40 to-cp-bg"></div>
+        <!-- Placeholder for static map texture. Provide your own asset at /static/img/cincy-wards.svg -->
+        <div class="absolute inset-0 opacity-20 bg-[url('/static/img/cincy-wards.svg')] bg-center bg-cover mix-blend-screen"></div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10 border-b border-white/10 backdrop-blur supports-[backdrop-filter]:bg-white/5">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <!-- Simple monogram; replace with SVG logo later -->
+          <div class="h-9 w-9 grid place-content-center rounded-xl bg-white/10 ring-1 ring-white/15">
+            <span class="font-mono text-lg tracking-widest">CP</span>
+          </div>
+          <div>
+            <a href="/" class="text-xl font-semibold tracking-tight">CincyPolitics</a>
+            <div class="text-xs text-white/60 -mt-0.5">Data‑first Cincinnati politics</div>
+          </div>
+        </div>
+        <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
+          <a class="hover:text-white" href="#datasets">data sets</a>
+          <a class="hover:text-white" href="#elections">elections</a>
+          <a class="hover:text-white" href="#maps">maps</a>
+          <a class="hover:text-white" href="#about">about</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="relative z-10">
+      <!-- Hero: terminal-esque, minimal text -->
+      <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div class="grid lg:grid-cols-12 gap-8 items-end">
+          <div class="lg:col-span-7">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight">
+              Cincinnati politics, by the numbers
+            </h1>
+            <p class="mt-3 max-w-2xl text-white/70">
+              Live maps, results, and datasets. Little to no prose — just the facts.
+            </p>
+          </div>
+          <!-- Social rail on large screens -->
+          <aside class="lg:col-span-5 lg:justify-self-end">
+            <div class="flex items-center gap-4 lg:gap-6">
+              <a aria-label="Follow on X/Twitter" class="group inline-flex items-center gap-2 text-white/80 hover:text-white" href="https://twitter.com/" target="_blank" rel="noopener">
+                <!-- Twitter X icon (SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M18.244 2H21l-6.53 7.46L22.5 22h-6.843l-4.8-6.275L4.5 22H2l7.13-8.144L1.5 2h6.94l4.337 5.77L18.244 2Zm-2.395 18h2.02L8.29 4H6.16l9.689 16Z"/></svg>
+                <span class="hidden sm:inline">Twitter</span>
+              </a>
+              <a aria-label="Follow on Facebook" class="group inline-flex items-center gap-2 text-white/80 hover:text-white" href="https://facebook.com/" target="_blank" rel="noopener">
+                <!-- Facebook icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M13.5 9H16l.5-3h-3V4.5c0-.866.176-1.5 1.5-1.5H16V0h-2.5C11.57 0 10 1.79 10 4.5V6H7v3h3v9h3V9Z"/></svg>
+                <span class="hidden sm:inline">Facebook</span>
+              </a>
+              <a aria-label="Follow on Bluesky" class="group inline-flex items-center gap-2 text-white/80 hover:text-white" href="https://bsky.app/" target="_blank" rel="noopener">
+                <!-- Bluesky-inspired butterfly (generic) -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12 13c2-4 5-8 8-8 2 0 3 2 1.5 4S17 12 16 12c1 .5 4 2 4.5 4S18 21 15 19s-3-5-3-6c0 1-1 4-3 6s-5.5 1-5-3 3.5-3.5 4.5-4c-1 0-6.5-2-7.5-3.5S2 5 4 5c3 0 6 4 8 8Z"/></svg>
+                <span class="hidden sm:inline">Bluesky</span>
+              </a>
+              <!-- Mailing list button (placeholder) -->
+             <div class="mt-8 max-w-md">
+              <div style="height: 40vmin; min-height: 360px">
+                <script
+                  src="https://cdn.jsdelivr.net/ghost/signup-form@~0.3/umd/signup-form.min.js"
+                  data-background-color="#0b2545"
+                  data-text-color="#ffffff"
+                  data-button-color="#4fd1c5"
+                  data-button-text-color="#0b2545"
+                  data-title="CincyPolitics"
+                  data-description="Get updates from Cincinnati’s data-first political project."
+                  data-icon="https://www.gregorykorte.com/content/images/size/w192h192/2024/08/mugshot-1.jpeg"
+                  data-site="https://www.gregorykorte.com/"
+                  data-locale="en"
+                  async>
+                </script>
+              </div>
+            </div>
+
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Data-first panels (empty shells for iframes or Django-rendered charts) -->
+      <section id="datasets" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <article class="rounded-2xl bg-cp-card/60 ring-1 ring-white/10 shadow-soft overflow-hidden">
+            <header class="px-4 py-3 flex items-center justify-between border-b border-white/10">
+              <h2 class="text-sm font-medium tracking-wide uppercase text-white/80">latest results</h2>
+              <span class="text-xs text-white/50">v0.1</span>
+            </header>
+            <div class="p-0">
+              <!-- Replace iframe with Django chart include -->
+              <div class="aspect-[16/10]">
+                <iframe title="results" class="w-full h-full" src="about:blank"></iframe>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="rounded-2xl bg-cp-card/60 ring-1 ring-white/10 shadow-soft overflow-hidden">
+            <header class="px-4 py-3 flex items-center justify-between border-b border-white/10">
+              <h2 class="text-sm font-medium tracking-wide uppercase text-white/80">map: council districts</h2>
+              <span class="text-xs text-white/50">v0.1</span>
+            </header>
+            <div class="p-0">
+              <div class="aspect-[16/10]">
+                <iframe title="map" class="w-full h-full" src="about:blank"></iframe>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="rounded-2xl bg-cp-card/60 ring-1 ring-white/10 shadow-soft overflow-hidden">
+            <header class="px-4 py-3 flex items-center justify-between border-b border-white/10">
+              <h2 class="text-sm font-medium tracking-wide uppercase text-white/80">dataset catalog</h2>
+              <span class="text-xs text-white/50">v0.1</span>
+            </header>
+            <div class="p-5 text-white/70 text-sm">
+              Minimal catalog placeholder. Replace with dynamic listing from Django.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="about" class="border-t border-white/10">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-2 gap-8 text-sm text-white/70">
+          <div>
+            <div class="font-semibold text-white">CincyPolitics</div>
+            <p class="mt-2 max-w-prose">A data-first project on Cincinnati politics. Built for fast charts, maps, and results — with prose kept to a minimum.</p>
+          </div>
+          <div class="md:justify-self-end">
+            <ul class="space-y-1">
+              <li><a class="hover:text-white" href="#">Privacy</a></li>
+              <li><a class="hover:text-white" href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Simple JS stub for any runtime tweaks (none needed yet) -->
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
