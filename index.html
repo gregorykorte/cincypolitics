@@ -64,7 +64,7 @@
         <div class="flex items-center gap-3">
           <!-- Logo using neighborhood outline -->
           <a href="/" class="h-9 w-9 grid place-content-center rounded-xl bg-white/10 ring-1 ring-white/15 overflow-hidden">
-            <img src="/static/img/cincy_wards_logo.svg" alt="CincyPolitics logo" class="h-9 w-9 object-contain" />
+            <img src="/static/img/cincypolitics_logo.png" alt="CincyPolitics logo" class="h-9 w-9 object-contain" />
           </a>
           <div>
             <a href="/" class="text-xl font-semibold tracking-tight">CincyPolitics</a>
@@ -91,10 +91,11 @@
         <div class="grid lg:grid-cols-3 gap-8 items-start">
           <!-- Left two-thirds -->
           <div class="lg:col-span-2">
-            <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-center">CincyPolitics</h1>
-            <div class="mt-1 text-white/70 small-caps text-sm text-center">UNDER CONSTRUCTION</div>
+            <div class="mt-2 text-white/80 small-caps font-serif text-2xl sm:text-3xl lg:text-4xl tracking-widest text-center">UNDER CONSTRUCTION</div>
             <div class="mt-6 rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-soft bg-black/10 mx-auto">
-              <img src="/static/img/subway.jpg"$1 />
+              <div class="aspect-[16/10]">
+                <img src="/static/img/subway.jpg" class="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
 
@@ -108,7 +109,8 @@
                 <h2 class="text-sm font-medium tracking-wide uppercase text-white/80">subscribe</h2>
               </header>
               <div class="p-4">
-                <div style="height: 40vmin; min-height: 320px">
+                <div class="aspect-[16/10]">
+                  <div style="height: 100%; min-height: 0">
                   <script
                     src="https://cdn.jsdelivr.net/ghost/signup-form@~0.3/umd/signup-form.min.js"
                     data-background-color="#0b2545"
@@ -117,10 +119,11 @@
                     data-button-text-color="#0b2545"
                     data-title="CincyPolitics"
                     data-description="Get updates from Cincinnati’s data-first political project."
-                    data-icon="/static/img/cincy_wards_logo.svg"
+                    data-icon="/static/img/cincypolitics_large.png"
                     data-site="https://www.gregorykorte.com/"
                     data-locale="en"
                     async></script>
+                  </div>
                 </div>
               </div>
             </article>
