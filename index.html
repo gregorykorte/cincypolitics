@@ -1,10 +1,9 @@
-{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}CincyPolitics · Data-first Cincinnati politics{% endblock %}</title>
+    <title>CincyPolitics · Data-first Cincinnati politics</title>
 
     <!-- Plausible Analytics -->
     <script defer data-domain="cincypolitics.com" src="https://plausible.io/js/script.js"></script>
@@ -48,7 +47,7 @@
     <div aria-hidden="true" class="pointer-events-none fixed inset-0">
       <div class="absolute inset-0 bg-cp-bg">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cp-grid/40 to-cp-bg"></div>
-        <div class="absolute inset-0 opacity-20 bg-[url('/static/img/cincy-wards.svg')] bg-center bg-cover mix-blend-screen"></div>
+        <div class="absolute inset-0 opacity-20 bg-[url(/static/img/cincy-wards.svg)] bg-center bg-cover mix-blend-screen"></div>
       </div>
     </div>
 
@@ -58,7 +57,7 @@
         <div class="flex items-center gap-3">
           <!-- Logo using neighborhood outline -->
           <a href="/" class="h-9 w-9 grid place-content-center rounded-xl bg-white/10 ring-1 ring-white/15 overflow-hidden">
-            <img src="{% static 'img/cincy_wards_logo.svg' %}" alt="CincyPolitics logo" class="h-9 w-9 object-contain" />
+            <img src="/static/img/cincy_wards_logo.svg" alt="CincyPolitics logo" class="h-9 w-9 object-contain" />
           </a>
           <div>
             <a href="/" class="text-xl font-semibold tracking-tight">CincyPolitics</a>
@@ -93,7 +92,7 @@
             <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight">CincyPolitics</h1>
             <div class="mt-1 text-white/70 small-caps text-sm">UNDER CONSTRUCTION</div>
             <div class="mt-6 rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-soft bg-black/10">
-              <img src="{% static 'img/subway.jpg' %}" alt="Cincinnati subway construction scene" class="w-full h-auto block"/>
+              <img src="/static/img/subway.jpg" alt="Cincinnati subway construction scene" class="w-full h-auto block"/>
             </div>
           </div>
 
@@ -121,9 +120,7 @@
       </div>
     </footer>
 
-    {% block scripts %}
-      <!-- Twitter widgets loader -->
+          <!-- Twitter widgets loader -->
       <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    {% endblock %}
   </body>
 </html>
