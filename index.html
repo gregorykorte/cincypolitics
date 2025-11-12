@@ -40,6 +40,13 @@
     <style>
       html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
       .small-caps { font-variant: small-caps; letter-spacing: .08em; }
+      /* Fallback CSS in case Tailwind fails to load */
+      body{background:#0b2545;color:#fff}
+      .cp-container{max-width:80rem;margin:0 auto;padding:0 1rem}
+      .cp-grid{display:block}
+      @media(min-width:1024px){.cp-grid{display:grid;grid-template-columns:2fr 1fr;gap:2rem}}
+      .cp-card{background:rgba(15,51,95,.6);border:1px solid rgba(255,255,255,.1);border-radius:1rem;overflow:hidden}
+      img{max-width:100%;height:auto;display:block}
     </style>
   </head>
   <body class="min-h-screen font-sans bg-cp-bg text-white">
@@ -47,7 +54,7 @@
     <div aria-hidden="true" class="pointer-events-none fixed inset-0">
       <div class="absolute inset-0 bg-cp-bg">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cp-grid/40 to-cp-bg"></div>
-        <div class="absolute inset-0 opacity-20 bg-[url(/static/img/cincy-wards.svg)] bg-center bg-cover mix-blend-screen"></div>
+        <div class="absolute inset-0 opacity-20 bg-[url('/static/img/cincy-wards.svg')] bg-center bg-cover mix-blend-screen"></div>
       </div>
     </div>
 
@@ -129,7 +136,7 @@
                     data-button-text-color="#0b2545"
                     data-title="CincyPolitics"
                     data-description="Get updates from Cincinnati’s data-first political project."
-                    data-icon="https://www.gregorykorte.com/content/images/size/w192h192/2024/08/mugshot-1.jpeg"
+                    data-icon="/static/img/cincy_wards_logo.svg"
                     data-site="https://www.gregorykorte.com/"
                     data-locale="en"
                     async></script>
