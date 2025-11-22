@@ -1,0 +1,144 @@
+:root{
+  --blue-dark:#0b2545;
+  --blue-mid:#153e75;
+  --blue-light:#1f6feb;
+  --fg:#f9fafb;
+  --muted:#cbd5e1;
+  --card-bg:#ffffff;
+  --line:rgba(255,255,255,0.15);
+}
+
+/* hide link text, show only icon in Ghost header menus (safe to keep) */
+:where(.nav,.gh-head-menu) .nav-facebook,
+:where(.nav,.gh-head-menu) .nav-github,
+:where(.nav,.gh-head-menu) .nav-instagram,
+:where(.nav,.gh-head-menu) .nav-linkedin,
+:where(.nav,.gh-head-menu) .nav-mastodon,
+:where(.nav,.gh-head-menu) .nav-threads,
+:where(.nav,.gh-head-menu) .nav-twitter,
+:where(.nav,.gh-head-menu) .nav-bluesky,
+:where(.nav,.gh-head-menu) .nav-telegram,
+:where(.nav,.gh-head-menu) .nav-signal-messenger{
+  font-size:0!important;
+  display:inline-block;
+  line-height:1;
+}
+
+body{
+  margin:0;
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--fg);
+  background-color:var(--blue-dark);
+}
+
+.bg-gradient{
+  background:linear-gradient(180deg,var(--blue-dark) 0%,var(--blue-mid) 50%,var(--blue-light) 100%);
+  min-height:100vh;
+}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 1rem;}
+
+.site-header{
+  background:rgba(11,37,69,.95);
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;backdrop-filter:blur(4px);
+}
+
+.beta-tag {
+  background-color: #d4a017; !important; /* your original rich yellow-gold */
+  color: "#d4a017"; !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;padding:1rem 0;
+}
+
+.brand{font-weight:700;font-size:1.4rem;color:#fff;text-decoration:none;letter-spacing:-.5px;}
+.brand .org{color:var(--blue-light);}
+
+.nav a{margin-left:1rem;text-decoration:none;color:var(--muted);transition:color .2s ease;}
+.nav a:hover{color:#fff;}
+
+.content{padding:2rem 0;}
+
+.card{
+  background:var(--card-bg);color:#000;border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);padding:1.5rem;margin-bottom:1.5rem;
+}
+
+/* Headings default to white on dark bg; we’ll set section cards separately */
+h1,h2,h3{color:#fff;margin-top:0;}
+a{color:var(--blue-light);}
+
+.site-footer{border-top:1px solid var(--line);padding:1rem 0;color:var(--muted);font-size:.9rem;text-align:center;}
+
+/* ===== Person page ===== */
+
+/* Use .wrap for same side margins as list/index pages */
+.person .person-header{
+  display:grid;grid-template-columns:136px 1fr;gap:16px;align-items:start;margin:16px 0 20px;
+}
+
+/* Force fixed photo size regardless of source */
+.person .person-photo img{
+  width:128px;height:128px;object-fit:cover;display:block;border-radius:8px;background:#f2f4f7;
+}
+
+/* Make sure the name is visible and prominent */
+.person .person-name{
+  margin:0 0 6px 0;font-size:2rem;line-height:1.15;color:#fff; /* explicit color to beat theme rules */
+}
+
+/* At-a-glance key/values */
+.person .at-a-glance{
+  display:grid;grid-template-columns:10rem 1fr;gap:4px 12px;margin:.25rem 0;
+}
+.person .at-a-glance dt{color:#e2e8f0;font-weight:600;}
+.person .at-a-glance dd{margin:0;color:#fff;}
+
+/* Tabs styled like browser tabs */
+.person .tabs{
+  display:flex;gap:4px;border-bottom:1px solid #e5e7eb;margin:.75rem 0 0;
+}
+.person .tab{
+  position:relative;top:1px;padding:.5rem .75rem;text-decoration:none;color:#334155;
+  background:transparent;border:1px solid transparent;border-bottom:none;
+  border-top-left-radius:8px;border-top-right-radius:8px;
+}
+.person .tab.is-active{background:#fff;border-color:#e5e7eb;font-weight:600;color:#0b2545;}
+.person .tab:not(.is-active):hover{color:#0b2545;}
+
+/* White tab panel that connects visually with the active tab */
+.person .tab-panel{
+  background:#fff;border:1px solid #e5e7eb;border-top:0;
+  border-radius:0 8px 8px 8px;padding:16px;margin-bottom:16px;color:#0f172a;
+}
+.person .tab-panel h2{color:#0f172a;margin:0 0 .5rem 0;}
+
+/* Generic white section card (if you use it elsewhere) */
+.section-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:16px;color:#0f172a;}
+.section-card .h2{margin:0 0 .5rem;font-size:1.125rem;color:#0f172a;}
+
+/* --- Tabs: inactive = white text on dark bg; active stays as white panel --- */
+.person .tab{
+  color:#fff;                 /* full white for inactive tabs */
+  font-weight:500;
+  border:1px solid transparent;
+  border-bottom:none;
+  border-top-left-radius:8px;border-top-right-radius:8px;
+}
+.person .tab:not(.is-active):hover{
+  color:#fff;
+  background:rgba(255,255,255,.06); /* subtle hover so they pop */
+}
+.person .tab.is-active{
+  background:#fff;
+  color:#0b2545;
+  border-color:#e5e7eb;
+}
